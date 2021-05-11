@@ -4,6 +4,13 @@ from .models import MyClubUser
 from .models import Event
 
 # Register your models here.
-admin.site.register(Venue)
+# admin.site.register(Venue)
 admin.site.register(MyClubUser)
 admin.site.register(Event)
+
+
+@admin.register(Venue)
+class VenueAdmin(admin.ModelAdmin):
+	list_display = ('name', 'address', 'zip_code')
+	ordering = ('-name',)
+	search_fields = ('name','address')
