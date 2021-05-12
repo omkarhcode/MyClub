@@ -24,7 +24,7 @@ class VenueForm(ModelForm):
 			'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Venur Name'}), 
 			'address': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address'}), 
 			'zip_code': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Zip Code'}), 
-			'phone': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Phone'}), 
+			'phone': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone'}), 
 			'web': forms.URLInput(attrs={'class':'form-control', 'placeholder':'Web Address'}), 
 			'email_address': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'})
 		}
