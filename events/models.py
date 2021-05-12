@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Venue(models.Model):
@@ -26,7 +27,7 @@ class Event(models.Model):
 	# Below venus is connected to Venue class so venue.address or venue.zipcode can be used
 	venue = models.ForeignKey(Venue, on_delete=models.CASCADE ,blank=True, null=True)
 	# venue = models.CharField('Event Venue', max_length=120)
-	manager =  models.CharField('Event Manager', max_length=60)
+	manager =  models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
 	description = models.TextField(blank=True)
 	attendees = models.ManyToManyField(MyClubUser, blank=True)
 
