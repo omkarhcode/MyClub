@@ -25,6 +25,7 @@
             </li>
         </ul>
         <a href="{% url 'update-event' event.id %}" title="" type="button" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="{% url 'delete-event' event.id %}" title="" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
     </div>
 </div>
 {% endfor %}
