@@ -1,7 +1,34 @@
 from django import forms
 from django.forms import ModelForm
-from django.utils.translation import gettext_lazy as _
-from .models import Venue
+from .models import Venue, Event
+
+# Create a Events form
+class EventForm(ModelForm):
+	class Meta:
+		model = Event
+		# fields = '__all__'
+		fields = ('name', 'event_date', 'venue', 'manager', 'attendees', 'description')
+
+		# RND on how to add class: to labels
+		labels = {
+			'name': '', 
+			'event_date': 'YYYY-MM-DD HH:MM:SS', 
+			'venue': 'Venue', 
+			'manager': 'Manager',  
+			'attendees': 'Attendees',
+			'description': '',		
+		}
+
+		widgets = {
+			'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Name'}), 
+			'event_date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Date'}), 
+			'venue': forms.Select(attrs={'class':'form-select', 'placeholder':'Venue'}), 
+			'manager': forms.Select(attrs={'class':'form-select', 'placeholder':'Manager'}), 
+			'attendees': forms.SelectMultiple(attrs={'class':'form-control', 'placeholder':'Attendees'}), 
+			'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}), 
+		}
+
+
 
 # Create a venue form
 class VenueForm(ModelForm):
