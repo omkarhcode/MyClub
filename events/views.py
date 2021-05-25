@@ -2,9 +2,32 @@ from django.shortcuts import render, redirect
 import calendar
 from calendar import HTMLCalendar
 from datetime import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Event, Venue
 from .forms import VenueForm, EventForm
+
+# Generate text file venue list
+def venue_text(request):
+	response = HttpResponse(content_type='text/palin')
+	response['Content-Disposition'] = 'attachment; filename=venues.txt'
+
+	# Designate the Model
+	venues = Venue.objects.all()
+
+	# Create blank list
+	lines = []
+
+	# Loop through and output
+	for venue in venues:
+		lines.append(f'{venue.name}\n{venue.address}\n{venue.zip_code}\n{venue.phone}\n{venue.web}\n{venue.email_address}\n\n')
+
+	# lines = ["This is line 1\n",
+	# "This is line 2\n",
+	# "This is line 3"]
+
+	# Write to TextFile
+	response.writelines(lines)
+	return response
 
 def delete_venue(request, venue_id):
 	venue = Venue.objects.get(pk=venue_id)
