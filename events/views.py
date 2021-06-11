@@ -11,6 +11,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
+# Import Pagination
+from django.core.paginator import Paginator 
 
 # Generate a PDF file venue list
 def venue_pdf(request):
@@ -156,8 +158,15 @@ def show_venue(request, venue_id):
 	return render(request, 'events/show_venue.html',{'venue':venue})
 
 def list_venues(request):
-	venue_list = Venue.objects.all().order_by('-name')
-	return render(request, 'events/venues.html',{'venue_list': venue_list})	
+	# venue_list = Venue.objects.all().order_by('?')
+	# venue_list = Venue.objects.all()
+
+	# Set up Pagination
+	p = Paginator(Venue.objects.all(), 2)
+	page = request.GET.get('page')
+	venues = p.get_page(page)
+
+	return render(request, 'events/venues.html',{'venues': venues})	
 
 def add_venue(request):
 	submitted = False
@@ -179,7 +188,7 @@ def all_events(request):
 
 # Create your views here.
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
-	name = "Omkar"
+	name = "Dude"
 
 	month = month.capitalize()
 	# convert month from name to number
