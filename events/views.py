@@ -166,7 +166,10 @@ def list_venues(request):
 	page = request.GET.get('page')
 	venues = p.get_page(page)
 
-	return render(request, 'events/venues.html',{'venues': venues})	
+	# added this to output number paginations
+	nums = "a"*venues.paginator.num_pages
+
+	return render(request, 'events/venues.html',{'venues': venues, 'nums': nums})	
 
 def add_venue(request):
 	submitted = False
