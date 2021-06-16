@@ -84,7 +84,9 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config()
+# Checks and Configures HEROKU Postgres Database
+if dj_database_url.config() != {}:
+    DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
