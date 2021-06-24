@@ -21,7 +21,7 @@ class EventForm(ModelForm):
 
 		widgets = {
 			'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Name'}), 
-			'event_date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Date'}), 
+			'event_date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Event Date','type':'date'}), 
 			'venue': forms.Select(attrs={'class':'form-select', 'placeholder':'Venue'}), 
 			'manager': forms.Select(attrs={'class':'form-select', 'placeholder':'Manager'}), 
 			'attendees': forms.SelectMultiple(attrs={'class':'form-control', 'placeholder':'Attendees'}), 
