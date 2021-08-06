@@ -1,0 +1,16 @@
+{% extends "events/base.html" %}
+{% block title %}Register User{% endblock title %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>Register</h1>
+        <br>
+        <form action="{% url 'register-user' %}" method="POST" accept-charset="utf-8">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <button type="submit" value="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
